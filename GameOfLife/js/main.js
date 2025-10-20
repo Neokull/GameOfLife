@@ -79,6 +79,12 @@ loop();
 document.addEventListener("keydown", (e) => {
   if (e.key === " ") {
     running = !running;
+    //ejercicio 2
+    if (running) {
+      console.log("Simulación en ejecución");
+    } else {
+      console.log("Simulación pausada");
+    }
     e.preventDefault();
   }
 });
