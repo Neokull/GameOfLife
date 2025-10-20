@@ -1,7 +1,7 @@
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
 
-const CELL_SIZE = 12; //ejercicio 1
+const CELL_SIZE = 12; //ej1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
 const ROWS = Math.floor(canvas.height / CELL_SIZE);
 
@@ -27,7 +27,7 @@ randomize(0.2); // 20% vivas
 
 function draw(showGrid = true) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "limegreen"; //ejercicio 1
+  ctx.fillStyle = "limegreen"; //ej1
   // Celdas vivas
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
@@ -65,6 +65,7 @@ function step() {
   grid = next;
   draw();
 }
+
 step(); // prueba una generación
 
 let running = true;
@@ -74,12 +75,13 @@ function loop() {
   }
   requestAnimationFrame(loop);
 }
+
 loop();
 // (Espacio) para pausar/reanudar
 document.addEventListener("keydown", (e) => {
   if (e.key === " ") {
     running = !running;
-    //ejercicio 2
+    //ej2
     if (running) {
       console.log("Simulación en ejecución");
     } else {
@@ -88,3 +90,13 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
   }
 });
+//ej3
+const button = document.getElementById("button");
+
+function reboot() {
+  grid = createGrid(ROWS, COLS, false);
+  randomize(0.2);
+  draw();
+}
+
+button.addEventListener("click", reboot);
