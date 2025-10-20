@@ -1,7 +1,7 @@
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
 
-const CELL_SIZE = 8;
+const CELL_SIZE = 12; //ejercicio 1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
 const ROWS = Math.floor(canvas.height / CELL_SIZE);
 
@@ -27,6 +27,7 @@ randomize(0.2); // 20% vivas
 
 function draw(showGrid = true) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "limegreen"; //ejercicio 1
   // Celdas vivas
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
