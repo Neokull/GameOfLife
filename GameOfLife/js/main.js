@@ -52,6 +52,9 @@ function neighbors(r, c) {
   }
   return n;
 }
+//ej4
+let generations = 0;
+
 function step() {
   const next = createGrid(ROWS, COLS, false);
   for (let r = 0; r < ROWS; r++) {
@@ -64,6 +67,8 @@ function step() {
   }
   grid = next;
   draw();
+  generations++;
+  document.getElementById("info").textContent = generations;
 }
 
 step(); // prueba una generación
@@ -97,6 +102,8 @@ function reboot() {
   grid = createGrid(ROWS, COLS, false);
   randomize(0.2);
   draw();
+  generations = 0;
+  document.getElementById("info").textContent = generations;
 }
 
 button.addEventListener("click", reboot);
