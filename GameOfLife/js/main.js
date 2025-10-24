@@ -78,7 +78,7 @@ function loop() {
   if (running) {
     step();
   }
-  requestAnimationFrame(loop);
+  setTimeout(loop, 100);
 }
 
 loop();
@@ -96,9 +96,10 @@ document.addEventListener("keydown", (e) => {
   }
 });
 //ej3
+/*
 const button = document.getElementById("button");
 
-function reboot() {
+/function reboot() {
   grid = createGrid(ROWS, COLS, false);
   randomize(0.2);
   draw();
@@ -107,3 +108,87 @@ function reboot() {
 }
 
 button.addEventListener("click", reboot);
+*/
+//ej5
+const button = document.getElementById("button");
+const buttonReset = document.getElementById("empty");
+
+function reboot(event) {
+  let random;
+
+  if (event.currentTarget.id === "button") {
+    random = 0.2;
+  } else if (event.currentTarget.id === "empty") {
+    random = 0;
+  }
+  grid = createGrid(ROWS, COLS, false);
+  randomize(random);
+  draw();
+  generations = 0;
+  document.getElementById("info").textContent = generations;
+}
+
+button.addEventListener("click", reboot);
+buttonReset.addEventListener("click", reboot);
+
+const blinker = document.getElementById("blinker");
+
+function setBlinker(r, c) {
+  grid[r][c - 1] = 1;
+  grid[r][c] = 1;
+  grid[r][c + 1] = 1;
+}
+
+blinker.addEventListener("click", () => {
+  setBlinker(5, 5);
+  draw();
+});
+
+const toad = document.getElementById("toad");
+
+function setToad(r, c) {
+  grid[r][c - 1] = 1;
+  grid[r][c] = 1;
+  grid[r][c + 1] = 1;
+  grid[r - 1][c] = 1;
+  grid[r - 1][c + 1] = 1;
+  grid[r - 1][c + 2] = 1;
+}
+
+toad.addEventListener("click", () => {
+  setToad(30, 10);
+  draw();
+});
+
+const beacon = document.getElementById("beacon");
+//La busque en internet esta combinacion porque la que copie me daba error.
+function setBeacon(r, c) {
+  // Bloque 1 (arriba-izquierda)
+  grid[r][c] = 1;
+  grid[r][c + 1] = 1;
+  grid[r + 1][c] = 1;
+
+  // Bloque 2 (abajo-derecha)
+  grid[r + 2][c + 3] = 1;
+  grid[r + 3][c + 2] = 1;
+  grid[r + 3][c + 3] = 1;
+}
+beacon.addEventListener("click", () => {
+  setBeacon(10, 30);
+  draw();
+});
+
+const glider = document.getElementById("glider");
+
+function setGlider(r, c) {
+  grid[r][c] = 1;
+  grid[r][c + 1] = 1;
+  grid[r][c + 2] = 1;
+  grid[r - 1][c + 2] = 1;
+  grid[r - 2][c + 1] = 1;
+}
+
+glider.addEventListener("click", () => {
+  setGlider(30, 30);
+  draw();
+});
