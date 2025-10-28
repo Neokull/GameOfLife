@@ -92,7 +92,7 @@ document.addEventListener("keydown", (event) => {
     } else {
       console.log("Simulación pausada");
     }
-    e.preventDefault();
+    event.preventDefault();
   }
 });
 //ej3
