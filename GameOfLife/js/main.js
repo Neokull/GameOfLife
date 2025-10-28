@@ -83,8 +83,8 @@ function loop() {
 
 loop();
 // (Espacio) para pausar/reanudar
-document.addEventListener("keydown", (e) => {
-  if (e.key === " ") {
+document.addEventListener("keydown", (event) => {
+  if (event.key === " ") {
     running = !running;
     //ej2
     if (running) {
@@ -191,4 +191,20 @@ function setGlider(r, c) {
 glider.addEventListener("click", () => {
   setGlider(30, 30);
   draw();
+});
+
+canvas.addEventListener("click", (event) => {
+  const rect = canvas.getBoundingClientRect();
+
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  const c = Math.floor(mouseX / CELL_SIZE);
+  const r = Math.floor(mouseY / CELL_SIZE);
+
+  if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
+    grid[r][c] = grid[r][c] ? 0 : 1;
+
+    draw();
+  }
 });
